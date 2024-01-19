@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useGameStore } from '@/stores/game'
 import PlayerSymbol from './PlayerSymbol.vue'
+import GameHistory from './GameHistory.vue'
 
 const players = ref(['Manuel', 'Pratyush'])
 const gameStore = useGameStore()
@@ -29,15 +30,20 @@ function startGame() {
       </div>
     </div>
     <div v-show="gameInProgress">
-      Game between
-      <div class="player-name bg-red-400/20 text-red-600">
-        {{ gameStore.players[0] }}
-        <player-symbol icon="cross" />
+      <div>
+        Game between
+        <div class="player-name bg-red-400/20 text-red-600">
+          {{ gameStore.players[0] }}
+          <player-symbol icon="cross" />
+        </div>
+        and
+        <div class="player-name bg-blue-400/20 text-blue-600">
+          {{ gameStore.players[1] }}
+          <player-symbol icon="circle" />
+        </div>
       </div>
-      and
-      <div class="player-name bg-blue-400/20 text-blue-600">
-        {{ gameStore.players[1] }}
-        <player-symbol icon="circle" />
+      <div class="mt-4">
+        <game-history />
       </div>
     </div>
   </div>
