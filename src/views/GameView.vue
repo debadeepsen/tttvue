@@ -4,7 +4,7 @@ import InfoPanel from '@/components/InfoPanel.vue'
 </script>
 
 <template>
-  <div class="flex">
+  <div class="flex flex-col lg:flex-row items-center">
     <game-board />
     <info-panel />
   </div>
