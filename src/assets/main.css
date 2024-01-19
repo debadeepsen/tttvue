@@ -7,6 +7,7 @@
 
 body {
   font-family: var(--base-font);
+  color: #333;
   @apply m-0 p-0 font-normal bg-zinc-300;
 }
 
@@ -21,4 +22,14 @@ header a {
 
 header a:hover {
   @apply bg-white/10;
+}
+
+input[type="text"] {
+  font-family: var(--base-font);
+  @apply border border-zinc-800/20 p-2 rounded-sm;
+}
+
+button {
+  font-family: var(--base-font);
+  @apply p-2;
 }
