@@ -1,35 +1,23 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+:root {
+  --base-font: 'Quicksand', system-ui, sans-serif;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  font-family: var(--base-font);
+  @apply m-0 p-0 font-normal bg-zinc-300;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+header {
+  @apply p-4 bg-zinc-800 flex justify-end;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+header a {
+  font-family: var(--base-font);
+  @apply text-cyan-100 py-2 px-4 mr-2 font-normal no-underline rounded-sm;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+header a:hover {
+  @apply bg-white/10;
 }
