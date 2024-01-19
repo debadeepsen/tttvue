@@ -1,10 +1,9 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 
-export type PlayerMove = {
-  player: number
+export type PlayerMove = [
   move: string
-}
+]
 
 export const useGameStore = defineStore('game', () => {
   const players = ref(['', ''])

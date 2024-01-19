@@ -9,6 +9,10 @@ const props = defineProps<{
     type: number
     required: false
   }
+  iconClass: {
+    type: string
+    required: false
+  }
 }>()
 
 const iconSvg = computed(() => (props.icon === 'cross' ? SymbolCross : SymbolCircle))
@@ -17,6 +21,6 @@ const sizeClass = computed(() => (props.size ? `w-${props.size} h-${props.size}`
 
 <template>
   <span class="inline-block ml-1" :class="sizeClass">
-    <keep-alive><component :is="iconSvg" /></keep-alive>
+    <keep-alive><component :is="iconSvg" :class="iconClass" /></keep-alive>
   </span>
 </template>

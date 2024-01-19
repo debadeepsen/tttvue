@@ -19,11 +19,13 @@ function startGame() {
     <h1 class="mb-6">Tic-Tac-Toe</h1>
     <div v-show="!gameInProgress" class="border border-zinc-400 w-full p-2">
       <h3 class="mt-8 lg:mt-0 mb-4">Enter the names of the players</h3>
-      <div>
+      <div class="flex">
         <input type="text" placeholder="Player 1" v-model="players[0]" />
+        <player-symbol icon="cross" icon-class="mt-2" />
       </div>
-      <div class="mt-2">
+      <div class="mt-2 flex">
         <input type="text" placeholder="Player 2" v-model="players[1]" />
+        <player-symbol icon="circle" icon-class="mt-2" />
       </div>
       <div class="mt-2">
         <button class="primary" @click="startGame">Start Game</button>

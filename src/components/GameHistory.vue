@@ -9,9 +9,9 @@ const gameStore = useGameStore()
       <th>{{ gameStore.players?.[0] }}</th>
       <th>{{ gameStore.players?.[1] }}</th>
     </tr>
-    <tr v-for="historyRow in gameStore.history" :key="historyRow">
-      <td>{{ historyRow }}</td>
-      <td></td>
+    <tr v-for="(historyRow, i) in gameStore.history" :key="historyRow">
+      <td>{{ historyRow[i][0] }}</td>
+      <td>{{ historyRow[i][1] }}</td>
     </tr>
   </table>
 </template>

@@ -33,7 +33,7 @@ a {
 }
 
 h1, h2, h3, h4 {
-  @apply m-0 p-0 mb-1 text-[#1f3940];
+  @apply m-0 p-0 mb-1 text-[#022a36];
 }
 
 h1 {
