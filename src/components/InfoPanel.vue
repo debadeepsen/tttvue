@@ -16,7 +16,7 @@ function startGame() {
 </script>
 <template>
   <div class="game-container px-8 min-h-full w-full lg:w-2/3">
-    <h1 class="text-cyan-400 mb-6">Tic-Tac-Toe</h1>
+    <h1 class="mb-6">Tic-Tac-Toe</h1>
     <div v-show="!gameInProgress" class="border border-zinc-400 w-full p-2">
       <h3 class="mt-8 lg:mt-0 mb-4">Enter the names of the players</h3>
       <div>
