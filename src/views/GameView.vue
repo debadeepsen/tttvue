@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import GameBoard from '@/components/GameBoard.vue'
+import InfoPanel from '@/components/InfoPanel.vue'
 </script>
 
 <template>
-    Hello
+  <div class="flex">
+    <game-board />
+    <info-panel />
+  </div>
 </template>
