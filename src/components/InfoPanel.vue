@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useGameStore } from '@/stores/game'
-import { CROSS, CIRCLE } from '@/utils/constants.ts'
+import PlayerSymbol from './PlayerSymbol.vue'
 
-const players = ref(['DEB', 'KAL'])
+const players = ref(['Manuel', 'Pratyush'])
 const gameStore = useGameStore()
 
 const gameInProgress = computed(() => gameStore.started)
@@ -15,8 +15,9 @@ function startGame() {
 </script>
 <template>
   <div class="game-container px-8 min-h-full w-full lg:w-2/3">
+    <h1 class="text-cyan-400 mb-6">Tic-Tac-Toe</h1>
     <div v-show="!gameInProgress" class="border border-zinc-400 w-full p-2">
-      <h3 class="mb-4">Enter the names of the players</h3>
+      <h3 class="mt-8 lg:mt-0 mb-4">Enter the names of the players</h3>
       <div>
         <input type="text" placeholder="Player 1" v-model="players[0]" />
       </div>
@@ -29,14 +30,15 @@ function startGame() {
     </div>
     <div v-show="gameInProgress">
       Game between
-      <span class="player-name"
-        >{{ gameStore.players[0] }}
-        <span class="player-symbol" v-html="CROSS"></span>
-      </span>
+      <div class="player-name bg-red-400/20 text-red-600">
+        {{ gameStore.players[0] }}
+        <player-symbol icon="cross" />
+      </div>
       and
-      <span class="player-name"
-        >{{ gameStore.players[1] }} <span class="player-symbol" v-html="CIRCLE"></span
-      ></span>
+      <div class="player-name bg-blue-400/20 text-blue-600">
+        {{ gameStore.players[1] }}
+        <player-symbol icon="circle" />
+      </div>
     </div>
   </div>
 </template>
@@ -46,12 +48,6 @@ function startGame() {
   @apply w-full;
 }
 .player-name {
-  @apply text-cyan-600 font-bold;
-}
-.player-symbol {
-  @apply inline-block w-8 h-8 ml-1 rounded-full bg-zinc-800/20;
-}
-.player-symbol svg {
-  @apply w-2 h-2;
+  @apply p-1 font-bold inline-flex w-fit rounded-md;
 }
 </style>
