@@ -18,7 +18,7 @@ import { RouterLink, RouterView } from 'vue-router'
   </main>
 </template>
 
-<style>
+<style scoped>
 main {
   @apply w-full h-[calc(100vh-150px)] flex justify-center items-center;
 }
