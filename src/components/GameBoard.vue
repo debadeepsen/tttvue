@@ -1,14 +1,28 @@
 <script setup lang="ts">
 import { CIRCLE, CROSS } from '@/utils/constants'
-import { ref } from 'vue'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 
 const gameStore = useGameStore()
+
 function getIcon(box: string) {
   if (box === CROSS) return 'cross'
   if (box === CIRCLE) return 'circle'
   return 'blank'
+}
+
+// function updateGameHistory() {
+//   gameStore.history
+// }
+
+function setNextPlayer() {
+  gameStore.currentPlayer = gameStore.currentPlayer === 0 ? 1 : 0
+}
+
+function setBoxValue(index: number) {
+  const currentSymbol = gameStore.currentPlayer === 0 ? CROSS : CIRCLE
+  gameStore.boxes[index] = currentSymbol
+  setNextPlayer()
 }
 </script>
 
@@ -19,6 +33,7 @@ function getIcon(box: string) {
         class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none"
         v-for="(box, i) in gameStore.boxes"
         :key="i"
+        @click="setBoxValue(i)"
       >
         <player-symbol :icon="getIcon(box)" :size="54" />
       </button>

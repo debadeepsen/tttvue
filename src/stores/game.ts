@@ -21,5 +21,8 @@ export const useGameStore = defineStore('game', () => {
     }
   })
 
+  // update history from here only, so that "boxes" is the single source of truth
+  // watch(boxes, (val) => {})
+
   return { players, started, currentPlayer, history, boxes }
 })
