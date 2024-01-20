@@ -11,17 +11,21 @@ function getIcon(box: string) {
   return 'blank'
 }
 
-// function updateGameHistory() {
-//   gameStore.history
-// }
+function updateGameHistory(currentSymbol: typeof CROSS | typeof CIRCLE, index: number) {
+  gameStore.history[currentSymbol].push(index.toString())
+}
 
 function setNextPlayer() {
   gameStore.currentPlayer = gameStore.currentPlayer === 0 ? 1 : 0
 }
 
 function setBoxValue(index: number) {
+  if (!gameStore.started) return
+  if(gameStore.boxes[index]) return
+
   const currentSymbol = gameStore.currentPlayer === 0 ? CROSS : CIRCLE
   gameStore.boxes[index] = currentSymbol
+  updateGameHistory(currentSymbol, index)
   setNextPlayer()
 }
 </script>
@@ -31,11 +35,16 @@ function setBoxValue(index: number) {
     <div class="grid grid-cols-3 grid-rows-3 gap-1 bg-[#333] w-72">
       <button
         class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none"
+        :style="{ cursor: gameStore.started ? 'pointer' : 'default' }"
         v-for="(box, i) in gameStore.boxes"
         :key="i"
         @click="setBoxValue(i)"
       >
-        <player-symbol :icon="getIcon(box)" :size="54" />
+        <player-symbol
+          :icon="getIcon(box)"
+          :size="54"
+          :icon-class="box === CROSS ? 'text-red-600' : 'text-blue-600'"
+        />
       </button>
     </div>
   </div>

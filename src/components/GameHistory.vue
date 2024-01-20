@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useGameStore, type PlayerMove } from '@/stores/game'
+import { useGameStore } from '@/stores/game'
 import WaitingSymbol from './WaitingSymbol.vue'
 import { MOVE } from '@/utils/constants'
 
 const gameStore = useGameStore()
 
-function isCurrentMove(player: PlayerMove) {
-  return player.move === MOVE
-}
-
-function getMove(player: PlayerMove) {
-  return isCurrentMove(player) ? '' : player.move
-}
 </script>
 
 <template>
+  {{ gameStore.history }}
+  <!--
   <table>
     <tr>
       <th>{{ gameStore.players?.[0] }}</th>
@@ -32,6 +27,7 @@ function getMove(player: PlayerMove) {
       </td>
     </tr>
   </table>
+-->
 </template>
 
 <style scoped>
