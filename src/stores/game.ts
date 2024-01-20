@@ -10,6 +10,7 @@ export const useGameStore = defineStore('game', () => {
   const players = ref(['', ''])
   const started = ref(false)
   const currentPlayer = ref<number | null>(null)
+  const boxes = ref<string[]>(new Array(9).fill(''))
   const history = ref<[PlayerMove, PlayerMove][] | null>(null)
 
   // every time the game starts, automatically give the turn to player X
@@ -20,5 +21,5 @@ export const useGameStore = defineStore('game', () => {
     }
   })
 
-  return { players, started, currentPlayer, history }
+  return { players, started, currentPlayer, history, boxes }
 })

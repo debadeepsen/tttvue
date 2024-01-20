@@ -6,12 +6,13 @@ const gameStore = useGameStore()
 </script>
 
 <template>
-  Game between
+  <span class="hidden lg:inline-block mr-2">Game between</span>
   <div class="player-name bg-red-400/20 text-red-600">
     {{ gameStore.players[0] }}
     <player-symbol icon="cross" />
   </div>
-  and
+  <span class="inline-block lg:hidden mx-2">vs</span>
+  <span class="hidden lg:inline-block mx-2">and</span>
   <div class="player-name bg-blue-400/20 text-blue-600">
     {{ gameStore.players[1] }}
     <player-symbol icon="circle" />
