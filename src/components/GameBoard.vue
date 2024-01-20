@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CIRCLE, CROSS } from '@/utils/constants'
+import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 
@@ -21,7 +21,7 @@ function setNextPlayer() {
 
 function setBoxValue(index: number) {
   if (!store.started) return
-  if(store.boxes[index]) return
+  if (store.boxes[index]) return
 
   const currentSymbol = store.currentPlayer === 0 ? CROSS : CIRCLE
   store.boxes[index] = currentSymbol
@@ -31,7 +31,17 @@ function setBoxValue(index: number) {
 </script>
 
 <template>
-  <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex justify-center items-center">
+  <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
+    <div class="absolute top-0 -left-4 h-full flex flex-col-reverse">
+      <div v-for="rowId in ROW_IDS" :key="rowId" class="h-1/3 flex flex-col justify-center">
+        {{ rowId }}
+      </div>
+    </div>
+    <div class="absolute -bottom-4 left-0 w-full flex">
+      <div v-for="colId in COL_IDS" :key="colId" class="w-1/3 flex justify-center">
+        {{ colId }}
+      </div>
+    </div>
     <div class="grid grid-cols-3 grid-rows-3 gap-1 bg-[#333] w-72">
       <button
         class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none"
