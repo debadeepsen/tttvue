@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { CIRCLE, CROSS, INITIAL_HISTORY, MOVE } from '@/utils/constants'
+import { CIRCLE, CROSS, INITIAL_HISTORY } from '@/utils/constants'
 
 export const useGameStore = defineStore('game', () => {
   const players = ref(['', ''])
@@ -13,12 +13,8 @@ export const useGameStore = defineStore('game', () => {
   watch(started, function (currentValue) {
     if (currentValue) {
       currentPlayer.value = 0
-      // history.value = { [CROSS]: [MOVE], [CIRCLE]: [''] }
     }
   })
-
-  // update history from here only, so that "boxes" is the single source of truth
-  // watch(boxes, (val) => {})
 
   return { players, started, currentPlayer, history, boxes }
 })

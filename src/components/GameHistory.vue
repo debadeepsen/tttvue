@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useGameStore } from '@/stores/game'
-import WaitingSymbol from './WaitingSymbol.vue'
-import { CIRCLE, CROSS, MOVE } from '@/utils/constants'
+import { CIRCLE, CROSS } from '@/utils/constants'
 
 const store = useGameStore()
 </script>
