@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useGameStore } from '@/stores/game'
 const gameStore = useGameStore()
 </script>
@@ -9,7 +9,7 @@ const gameStore = useGameStore()
       <th>{{ gameStore.players?.[0] }}</th>
       <th>{{ gameStore.players?.[1] }}</th>
     </tr>
-    <tr v-for="(historyRow, i) in gameStore.history" :key="historyRow">
+    <tr v-for="(historyRow, i) in gameStore.history" :key="i">
       <td>{{ historyRow[i][0] }}</td>
       <td>{{ historyRow[i][1] }}</td>
     </tr>

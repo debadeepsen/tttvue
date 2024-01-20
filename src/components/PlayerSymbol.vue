@@ -5,14 +5,8 @@ import SymbolCircle from '@/components/icons/symbols/SymbolCircle.vue'
 
 const props = defineProps<{
   icon: 'cross' | 'circle'
-  size: {
-    type: number
-    required: false
-  }
-  iconClass: {
-    type: string
-    required: false
-  }
+  size?: number
+  iconClass?: string
 }>()
 
 const iconSvg = computed(() => (props.icon === 'cross' ? SymbolCross : SymbolCircle))

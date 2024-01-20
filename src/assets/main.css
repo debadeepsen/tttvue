@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 @tailwind utilities;
 
 :root {
-  --base-font: 'Quicksand', system-ui, sans-serif;
+  --base-font: 'Nunito Sans', system-ui, sans-serif;
+  --heading-font: 'Quicksand', system-ui, sans-serif;
 }
 
 body {
@@ -32,15 +34,19 @@ a {
   @apply font-semibold text-cyan-600;
 }
 
-h1, h2, h3, h4 {
-  @apply m-0 p-0 mb-1 text-[#022a36];
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--heading-font);
+  @apply m-0 p-0 mb-1 text-[#022a36] font-bold;
 }
 
 h1 {
   @apply text-4xl lg:text-5xl;
 }
 
-input[type="text"] {
+input[type='text'] {
   font-family: var(--base-font);
   @apply border border-zinc-800/20 p-2 rounded-sm box-border;
 }

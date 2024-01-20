@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useGameStore } from '@/stores/game'
-import PlayerSymbol from './PlayerSymbol.vue'
-import GameHistory from './GameHistory.vue'
+import PlayerSymbol from '@/components/PlayerSymbol.vue'
+import GameHistory from '@/components/GameHistory.vue'
 
 const players = ref(['Manuel', 'Pratyush'])
 const gameStore = useGameStore()
