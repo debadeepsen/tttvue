@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, toRefs } from 'vue'
+import { computed } from 'vue'
 import { useGameStore } from '@/stores/game'
 import PlayerSymbol from '@/components/PlayerSymbol.vue'
 import PlayerNamesForm from '@/components/PlayerNamesForm.vue'
@@ -8,8 +8,6 @@ import GameHistory from '@/components/GameHistory.vue'
 const gameStore = useGameStore()
 
 const gameInProgress = computed(() => gameStore.started)
-const [playerX, playerO] = toRefs(gameStore.players)
-
 </script>
 <template>
   <div class="game-container px-8 lg:px-16 min-h-full w-full lg:w-2/3">
@@ -21,12 +19,12 @@ const [playerX, playerO] = toRefs(gameStore.players)
       <div>
         Game between
         <div class="player-name bg-red-400/20 text-red-600">
-          {{ playerX }}
+          {{ gameStore.players[0] }}
           <player-symbol icon="cross" />
         </div>
         and
         <div class="player-name bg-blue-400/20 text-blue-600">
-          {{ playerO }}
+          {{ gameStore.players[1] }}
           <player-symbol icon="circle" />
         </div>
       </div>
