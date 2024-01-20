@@ -30,7 +30,4 @@ const gameInProgress = computed(() => gameStore.started)
 .game-container input {
   @apply w-full;
 }
-.player-name {
-  @apply p-1 font-bold inline-flex w-fit rounded-md;
-}
 </style>

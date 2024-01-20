@@ -1,6 +1,18 @@
 <script setup lang="ts">
-import { useGameStore } from '@/stores/game'
+import { ref } from 'vue'
+import { useGameStore, type PlayerMove } from '@/stores/game'
+import WaitingSymbol from './WaitingSymbol.vue'
+import { MOVE } from '@/utils/constants'
+
 const gameStore = useGameStore()
+
+function isCurrentMove(player: PlayerMove) {
+  return player.move === MOVE
+}
+
+function getMove(player: PlayerMove) {
+  return isCurrentMove(player) ? '' : player.move
+}
 </script>
 
 <template>
@@ -9,9 +21,15 @@ const gameStore = useGameStore()
       <th>{{ gameStore.players?.[0] }}</th>
       <th>{{ gameStore.players?.[1] }}</th>
     </tr>
-    <tr v-for="(historyRow, i) in gameStore.history" :key="i">
-      <td>{{ historyRow[i][0] }}</td>
-      <td>{{ historyRow[i][1] }}</td>
+    <tr v-for="([playerX, playerO], i) in gameStore.history" :key="i">
+      <td>
+        {{ getMove(playerX) }}
+        <waiting-symbol v-show="isCurrentMove(playerX)" />
+      </td>
+      <td>
+        {{ getMove(playerO) }}
+        <waiting-symbol v-show="isCurrentMove(playerO)" />
+      </td>
     </tr>
   </table>
 </template>
@@ -22,7 +40,10 @@ table {
 }
 th,
 td {
-  @apply p-2;
+  @apply p-2 border-zinc-400 w-1/2;
+}
+tr:nth-child(2n + 1) {
+  @apply bg-zinc-400/10;
 }
 th {
   @apply bg-zinc-300;

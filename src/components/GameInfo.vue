@@ -17,3 +17,9 @@ const gameStore = useGameStore()
     <player-symbol icon="circle" />
   </div>
 </template>
+
+<style scoped>
+.player-name {
+  @apply p-1 font-bold inline-flex w-fit rounded-md;
+}
+</style>
