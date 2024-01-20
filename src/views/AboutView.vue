@@ -11,6 +11,14 @@ import IconGame from '@/components/icons/IconGame.vue'
       <h1>About this game</h1>
       <div class="mt-2">This is a simple tic-tac-toe game implemented with Vue JS.</div>
       <!-------------------------------------------------------->
+      <h2>Game notation</h2>
+      <div class="mt-2">
+        The game uses a similar technique to chess for recording moves. For example, if a player
+        decides to pick <span class="bg-zinc-200 inline-block px-2 mx-1 rounded-sm">row A</span> and
+        <span class="bg-zinc-200 inline-block px-2 mx-1 rounded-sm">column 2</span>, their move will be
+        recorded as <code class="text-lg font-bold">A2</code>.
+      </div>
+      <!-------------------------------------------------------->
       <h2>Front End Tech Stack</h2>
       <ul>
         <li><strong>Framework:</strong> Vue JS 3.3.1</li>
@@ -52,7 +60,8 @@ li {
 ul {
   @apply mt-0;
 }
-ul, li:last-child {
+ul,
+li:last-child {
   @apply mb-0;
 }
 </style>
