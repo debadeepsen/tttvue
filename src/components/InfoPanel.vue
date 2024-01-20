@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useGameStore } from '@/stores/game'
-import PlayerSymbol from '@/components/PlayerSymbol.vue'
 import PlayerNamesForm from '@/components/PlayerNamesForm.vue'
 import GameHistory from '@/components/GameHistory.vue'
+import GameInfo from '@/components/GameInfo.vue'
 
 const gameStore = useGameStore()
 
@@ -17,16 +17,7 @@ const gameInProgress = computed(() => gameStore.started)
     </div>
     <div v-show="gameInProgress">
       <div>
-        Game between
-        <div class="player-name bg-red-400/20 text-red-600">
-          {{ gameStore.players[0] }}
-          <player-symbol icon="cross" />
-        </div>
-        and
-        <div class="player-name bg-blue-400/20 text-blue-600">
-          {{ gameStore.players[1] }}
-          <player-symbol icon="circle" />
-        </div>
+        <game-info />
       </div>
       <div class="mt-4">
         <game-history />
