@@ -4,11 +4,11 @@ import { useGameStore } from '@/stores/game'
 import PlayerSymbol from '@/components/PlayerSymbol.vue'
 
 const players = ref(['Manuel', 'Pratyush'])
-const gameStore = useGameStore()
+const store = useGameStore()
 
 function startGame() {
-  gameStore.players = players.value
-  gameStore.started = true
+  store.players = players.value
+  store.started = true
 }
 </script>
 

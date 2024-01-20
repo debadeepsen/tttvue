@@ -3,7 +3,7 @@ import { CIRCLE, CROSS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 
-const gameStore = useGameStore()
+const store = useGameStore()
 
 function getIcon(box: string) {
   if (box === CROSS) return 'cross'
@@ -12,19 +12,19 @@ function getIcon(box: string) {
 }
 
 function updateGameHistory(currentSymbol: typeof CROSS | typeof CIRCLE, index: number) {
-  gameStore.history[currentSymbol].push(index.toString())
+  store.history[currentSymbol].push(index.toString())
 }
 
 function setNextPlayer() {
-  gameStore.currentPlayer = gameStore.currentPlayer === 0 ? 1 : 0
+  store.currentPlayer = store.currentPlayer === 0 ? 1 : 0
 }
 
 function setBoxValue(index: number) {
-  if (!gameStore.started) return
-  if(gameStore.boxes[index]) return
+  if (!store.started) return
+  if(store.boxes[index]) return
 
-  const currentSymbol = gameStore.currentPlayer === 0 ? CROSS : CIRCLE
-  gameStore.boxes[index] = currentSymbol
+  const currentSymbol = store.currentPlayer === 0 ? CROSS : CIRCLE
+  store.boxes[index] = currentSymbol
   updateGameHistory(currentSymbol, index)
   setNextPlayer()
 }
@@ -35,8 +35,8 @@ function setBoxValue(index: number) {
     <div class="grid grid-cols-3 grid-rows-3 gap-1 bg-[#333] w-72">
       <button
         class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none"
-        :style="{ cursor: gameStore.started ? 'pointer' : 'default' }"
-        v-for="(box, i) in gameStore.boxes"
+        :style="{ cursor: store.started ? 'pointer' : 'default' }"
+        v-for="(box, i) in store.boxes"
         :key="i"
         @click="setBoxValue(i)"
       >

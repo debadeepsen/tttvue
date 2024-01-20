@@ -5,9 +5,9 @@ import PlayerNamesForm from '@/components/PlayerNamesForm.vue'
 import GameHistory from '@/components/GameHistory.vue'
 import GameInfo from '@/components/GameInfo.vue'
 
-const gameStore = useGameStore()
+const store = useGameStore()
 
-const gameInProgress = computed(() => gameStore.started)
+const gameInProgress = computed(() => store.started)
 </script>
 <template>
   <div class="game-container px-8 lg:px-16 min-h-full w-full lg:w-2/3">
