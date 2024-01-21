@@ -2,6 +2,7 @@
 import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
+import { getAlgebraicNotation } from '@/utils/lib';
 
 const store = useGameStore()
 
@@ -12,7 +13,8 @@ function getIcon(box: string) {
 }
 
 function updateGameHistory(currentSymbol: typeof CROSS | typeof CIRCLE, index: number) {
-  store.history[currentSymbol].push(index.toString())
+  const box = getAlgebraicNotation(index)
+  store.history[currentSymbol].push(box)
 }
 
 function setNextPlayer() {
