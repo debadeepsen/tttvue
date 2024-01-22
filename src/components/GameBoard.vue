@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
+import { computed, ref } from 'vue'
+import { useStorage } from '@vueuse/core'
+import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY, type PlayerRecord } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 import { getAlgebraicNotation, whoWon } from '@/utils/lib'
@@ -25,19 +26,33 @@ const setNextPlayer = () => {
   store.currentPlayer = store.currentPlayer === 0 ? 1 : 0
 }
 
+const updateLeaderboard = () => {
+  const storedJSON = localStorage[STORAGE_KEY]
+  let data: PlayerRecord[]
+
+  if (!storedJSON) data = []
+  else data = JSON.parse(localStorage[STORAGE_KEY]) as PlayerRecord[]
+
+  console.log({ data })
+  data.push({ name: winnerName.value, moves: numOfMoves.value })
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+}
+
+const winnerName = computed(() => store.players[winnerSymbol.value === CROSS ? 0 : 1])
+const numOfMoves = computed(
+  () => store.history[winnerSymbol.value as typeof CROSS | typeof CIRCLE].length
+)
+
 const checkForWin = () => {
   const winningSymbol = whoWon(store.boxes)
 
-  console.log({ winningSymbol })
-
   if (winningSymbol === 'X' || winningSymbol === 'O') {
     winnerSymbol.value = winningSymbol
+    updateLeaderboard()
     showDialog.value = true
   } else if (winningSymbol === 'D') {
     showDialog.value = true
   }
-
-  return false
 }
 
 const closeDialog = () => {
@@ -51,7 +66,7 @@ const setBoxValue = (index: number) => {
 
   const currentSymbol = store.currentPlayer === 0 ? CROSS : CIRCLE
   store.boxes[index] = currentSymbol
-  if (checkForWin()) return
+  checkForWin()
 
   updateGameHistory(currentSymbol, index)
   setNextPlayer()
@@ -89,10 +104,7 @@ const setBoxValue = (index: number) => {
   <modal-dialog :show="showDialog" @close="closeDialog">
     <div v-if="winnerSymbol" class="dialog-content">
       <h2>Congratulations!</h2>
-      <div class="mt-2">
-        {{ store.players[winnerSymbol === CROSS ? 0 : 1] }} won in
-        {{ store.history[winnerSymbol].length }} moves!
-      </div>
+      <div class="mt-2">{{ winnerName }} won in {{ numOfMoves }} moves!</div>
     </div>
     <div v-else class="dialog-content">
       <h2>Draw!</h2>
