@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useStorage } from '@vueuse/core'
-import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY, type PlayerRecord } from '@/utils/constants'
+import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
-import { getAlgebraicNotation, whoWon } from '@/utils/lib'
+import { getAlgebraicNotation, whoWon, getLeaderboardData } from '@/utils/lib'
 import ModalDialog from './ModalDialog.vue'
 
 const store = useGameStore()
@@ -27,14 +26,10 @@ const setNextPlayer = () => {
 }
 
 const updateLeaderboard = () => {
-  const storedJSON = localStorage[STORAGE_KEY]
-  let data: PlayerRecord[]
-
-  if (!storedJSON) data = []
-  else data = JSON.parse(localStorage[STORAGE_KEY]) as PlayerRecord[]
+  const data = getLeaderboardData()
 
   console.log({ data })
-  data.push({ name: winnerName.value, moves: numOfMoves.value })
+  data.push({ name: winnerName.value, moves: numOfMoves.value, timestamp: Date.now() })
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
 }
 

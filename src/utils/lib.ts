@@ -1,4 +1,4 @@
-import { CROSS, CIRCLE } from './constants'
+import { CROSS, CIRCLE, STORAGE_KEY, type PlayerRecord } from './constants'
 
 export const getAlgebraicNotation = (index: number) => {
   const row = 4 - Math.ceil((index + 1) / 3)
@@ -32,4 +32,14 @@ export const whoWon = (boxes: string[]) => {
   if (boxes.every((b) => !!b) && !winningSymbol) return 'D'
 
   return winningSymbol
+}
+
+export const getLeaderboardData = () => {
+  const storedJSON = localStorage[STORAGE_KEY]
+  let data: PlayerRecord[]
+
+  if (!storedJSON) data = []
+  else data = JSON.parse(localStorage[STORAGE_KEY]) as PlayerRecord[]
+
+  return data
 }
