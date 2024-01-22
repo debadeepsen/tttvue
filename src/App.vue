@@ -20,7 +20,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style scoped>
 main {
-  @apply w-full h-[calc(100vh-53px)] flex justify-center items-center;
+  @apply w-full h-screen flex justify-center items-center;
 }
 .container {
   @apply bg-white w-[90vw] lg:w-[80vw] max-w-[1024px] font-normal p-8 lg:p-16 rounded-md shadow-xl;
