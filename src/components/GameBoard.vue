@@ -2,7 +2,7 @@
 import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
-import { getAlgebraicNotation } from '@/utils/lib';
+import { getAlgebraicNotation, whoWon } from '@/utils/lib'
 
 const store = useGameStore()
 
@@ -21,12 +21,31 @@ function setNextPlayer() {
   store.currentPlayer = store.currentPlayer === 0 ? 1 : 0
 }
 
+function checkForWin() {
+  // const winX = hasWon(CROSS, store.boxes)
+  // const winO = hasWon(CIRCLE, store.boxes)
+
+  // if (winX || winO) {
+  //   alert('won')
+  //   return true
+  // }
+
+  // return false
+  const winningSymbol = whoWon(store.boxes)
+
+  console.log({ winningSymbol })
+
+  return false
+}
+
 function setBoxValue(index: number) {
   if (!store.started) return
   if (store.boxes[index]) return
 
   const currentSymbol = store.currentPlayer === 0 ? CROSS : CIRCLE
   store.boxes[index] = currentSymbol
+  if (checkForWin()) return
+
   updateGameHistory(currentSymbol, index)
   setNextPlayer()
 }
