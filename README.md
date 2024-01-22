@@ -1,6 +1,6 @@
 # tttvue
 
-This template should help get you started developing with Vue 3 in Vite.
+This project has been developed with Vue 3 in Vite. You can check out the live demo at [https://tttvue.vercel.app](https://tttvue.vercel.app) or follow the instructions below to set up and run a local copy.
 
 ## Recommended IDE Setup
 
