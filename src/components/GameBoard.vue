@@ -40,6 +40,11 @@ const checkForWin = () => {
   return false
 }
 
+const closeDialog = () => {
+  showDialog.value = false
+  store.resetGame()
+}
+
 const setBoxValue = (index: number) => {
   if (!store.started) return
   if (store.boxes[index]) return
@@ -81,7 +86,7 @@ const setBoxValue = (index: number) => {
       </button>
     </div>
   </div>
-  <modal-dialog :show="showDialog" @close="showDialog = false">
+  <modal-dialog :show="showDialog" @close="closeDialog">
     <div v-if="winnerSymbol" class="dialog-content">
       <h2>Congratulations!</h2>
       <div class="mt-2">
