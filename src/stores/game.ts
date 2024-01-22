@@ -10,8 +10,8 @@ export const useGameStore = defineStore('game', () => {
   const history = ref<{ [CROSS]: string[]; [CIRCLE]: string[] }>(INITIAL_HISTORY)
 
   // every time the game starts, automatically give the turn to player X
-  watch(started, function (currentValue) {
-    if (currentValue) {
+  watch(started, function (val) {
+    if (val) {
       currentPlayer.value = 0
     }
   })

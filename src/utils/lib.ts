@@ -1,30 +1,9 @@
-import { CROSS, CIRCLE, BLANK } from './constants'
+import { CROSS, CIRCLE } from './constants'
 
 export const getAlgebraicNotation = (index: number) => {
   const row = 4 - Math.ceil((index + 1) / 3)
   const col = ['A', 'B', 'C'][index % 3]
   return `${col}${row}`
-}
-
-export const hasWon = (symbol: typeof CROSS | typeof CIRCLE, boxes: string[]) => {
-  //   const isRowFilled = (start: number) =>
-  //     boxes[start] === symbol && boxes[start + 1] === symbol && boxes[start + 2] === symbol
-  //   const rowWinCondition = isRowFilled(0) || isRowFilled(1) || isRowFilled(2)
-  //   console.log(isRowFilled(0))
-  //   console.log(isRowFilled(1))
-  //   console.log(isRowFilled(2))
-  //   console.log({ rowWinCondition })
-  //   const isColFilled = (start: number) =>
-  //     boxes[start] === symbol && boxes[start + 3] === symbol && boxes[start + 6] === symbol
-  //   const colWinCondition = isColFilled(0) || isColFilled(1) || isColFilled(2)
-  //   console.log({ colWinCondition })
-  //   const diagWinCondition =
-  //     (boxes[0] === symbol && boxes[4] === symbol && boxes[8] === symbol) ||
-  //     (boxes[2] === symbol && boxes[4] === symbol && boxes[6] === symbol)
-  //   console.log({ diagWinCondition })
-  //   console.log()
-  //   console.log()
-  //   return rowWinCondition || colWinCondition || diagWinCondition
 }
 
 export const whoWon = (boxes: string[]) => {

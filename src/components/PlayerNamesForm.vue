@@ -6,7 +6,7 @@ import PlayerSymbol from '@/components/PlayerSymbol.vue'
 const players = ref(['Manuel', 'Pratyush'])
 const store = useGameStore()
 
-function startGame() {
+const startGame = () => {
   store.players = players.value
   store.started = true
 }

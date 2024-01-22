@@ -6,31 +6,22 @@ import { getAlgebraicNotation, whoWon } from '@/utils/lib'
 
 const store = useGameStore()
 
-function getIcon(box: string) {
+const getIcon = (box: string) => {
   if (box === CROSS) return 'cross'
   if (box === CIRCLE) return 'circle'
   return 'blank'
 }
 
-function updateGameHistory(currentSymbol: typeof CROSS | typeof CIRCLE, index: number) {
+const updateGameHistory = (currentSymbol: typeof CROSS | typeof CIRCLE, index: number) => {
   const box = getAlgebraicNotation(index)
   store.history[currentSymbol].push(box)
 }
 
-function setNextPlayer() {
+const setNextPlayer = () => {
   store.currentPlayer = store.currentPlayer === 0 ? 1 : 0
 }
 
-function checkForWin() {
-  // const winX = hasWon(CROSS, store.boxes)
-  // const winO = hasWon(CIRCLE, store.boxes)
-
-  // if (winX || winO) {
-  //   alert('won')
-  //   return true
-  // }
-
-  // return false
+const checkForWin = () => {
   const winningSymbol = whoWon(store.boxes)
 
   console.log({ winningSymbol })
@@ -38,7 +29,7 @@ function checkForWin() {
   return false
 }
 
-function setBoxValue(index: number) {
+const setBoxValue = (index: number) => {
   if (!store.started) return
   if (store.boxes[index]) return
 
