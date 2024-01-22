@@ -3,6 +3,7 @@ import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 import { getAlgebraicNotation, whoWon } from '@/utils/lib'
+import ModalDialog from './ModalDialog.vue';
 
 const store = useGameStore()
 
@@ -70,4 +71,7 @@ const setBoxValue = (index: number) => {
       </button>
     </div>
   </div>
+  <modal-dialog show>
+    hello
+  </modal-dialog>
 </template>
