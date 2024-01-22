@@ -71,7 +71,7 @@ const setBoxValue = (index: number) => {
       </button>
     </div>
   </div>
-  <modal-dialog show>
+  <modal-dialog>
     hello
   </modal-dialog>
 </template>

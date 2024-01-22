@@ -1,7 +1,6 @@
 <template>
   <div class="flex items-center">
     <div class="blink"></div>
-    <div class="ml-2">Waiting</div>
   </div>
 </template>
 
