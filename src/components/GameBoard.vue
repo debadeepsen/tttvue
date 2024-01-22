@@ -1,11 +1,14 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { CIRCLE, COL_IDS, CROSS, ROW_IDS } from '@/utils/constants'
 import PlayerSymbol from './PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 import { getAlgebraicNotation, whoWon } from '@/utils/lib'
-import ModalDialog from './ModalDialog.vue';
+import ModalDialog from './ModalDialog.vue'
 
 const store = useGameStore()
+const winnerSymbol = ref<typeof CROSS | typeof CIRCLE | null>(null)
+const showDialog = ref(false)
 
 const getIcon = (box: string) => {
   if (box === CROSS) return 'cross'
@@ -26,6 +29,13 @@ const checkForWin = () => {
   const winningSymbol = whoWon(store.boxes)
 
   console.log({ winningSymbol })
+
+  if (winningSymbol === 'X' || winningSymbol === 'O') {
+    winnerSymbol.value = winningSymbol
+    showDialog.value = true
+  } else if (winningSymbol === 'D') {
+    showDialog.value = true
+  }
 
   return false
 }
@@ -71,7 +81,24 @@ const setBoxValue = (index: number) => {
       </button>
     </div>
   </div>
-  <modal-dialog>
-    hello
+  <modal-dialog :show="showDialog" @close="showDialog = false">
+    <div v-if="winnerSymbol" class="dialog-content">
+      <h2>Congratulations!</h2>
+      <div class="mt-2">
+        {{ store.players[winnerSymbol === CROSS ? 0 : 1] }} won in
+        {{ store.history[winnerSymbol].length }} moves!
+      </div>
+    </div>
+    <div v-else class="dialog-content">
+      <h2>Draw!</h2>
+      <div class="mt-2">
+        The game between {{ store.players[0] }} and {{ store.players[1] }} ended in a draw.
+      </div>
+    </div>
   </modal-dialog>
 </template>
+<style scoped>
+.dialog-content {
+  @apply p-4 flex flex-col justify-center items-center;
+}
+</style>
