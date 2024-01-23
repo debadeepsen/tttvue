@@ -17,7 +17,7 @@
        "./*"
       ]
      },
-     "target": "ES6",
+     "target": "ES2022",
      "module": "CommonJS",
      "lib": ["es2022"], 
    }

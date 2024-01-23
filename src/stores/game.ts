@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { CIRCLE, CROSS, BLANK } from '@/utils/constants'
+import { CIRCLE, CROSS, BLANK, type SymbolValue } from '@/utils/constants'
 
 const defaultState = {
   players: ['', ''],
@@ -24,6 +24,17 @@ export const useGameStore = defineStore('game', () => {
     }
   })
 
+  const undoLastMove = (symbol: SymbolValue) => {
+    if (currentPlayer.value === null) return
+
+    const lastBoxIndex = history.value[symbol].at(-1)
+    if (lastBoxIndex === undefined) return
+
+    boxes.value[lastBoxIndex] = BLANK
+    history.value[symbol].pop()
+    currentPlayer.value = 1 - currentPlayer.value
+  }
+
   const resetGame = () => {
     players.value = defaultState.players
     started.value = defaultState.started
@@ -32,5 +43,5 @@ export const useGameStore = defineStore('game', () => {
     history.value = { [CROSS]: [], [CIRCLE]: [] }
   }
 
-  return { players, started, currentPlayer, history, boxes, resetGame }
+  return { players, started, currentPlayer, history, boxes, undoLastMove, resetGame }
 })

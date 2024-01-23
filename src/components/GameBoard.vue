@@ -28,7 +28,6 @@ const setNextPlayer = () => {
 const updateLeaderboard = () => {
   const data = getLeaderboardData()
 
-  console.log({ data })
   data.push({ name: winnerName.value, moves: numOfMoves.value, timestamp: Date.now() })
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
 }

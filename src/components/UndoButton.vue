@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores/game'
-import { BLANK, CIRCLE, CROSS, type SymbolValue } from '@/utils/constants'
+import { CIRCLE, CROSS, type SymbolValue } from '@/utils/constants'
 
 const store = useGameStore()
 
 const undo = () => {
-  // const { length } = store.boxes
-  // const symbol = [CROSS, CIRCLE][1 - store.currentPlayer!] as SymbolValue
-  // const lastBox=(store.history[symbol]).at(-1)
-  // const lastBoxIndex = 
-
-  // console.log({symbol,lastBoxIndex})
+  const symbol = [CROSS, CIRCLE][1 - store.currentPlayer!] as SymbolValue
+  store.undoLastMove(symbol)
 }
+
 </script>
 <template>
   <button
@@ -19,13 +16,7 @@ const undo = () => {
     :title="`Undo the last move of ${store.players[1 - store.currentPlayer!]}`"
     @click="undo"
   >
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-    >
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
       <g id="SVGRepo_iconCarrier">
