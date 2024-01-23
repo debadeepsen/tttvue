@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center h-[24px]">
     <div class="blink"></div>
   </div>
 </template>
