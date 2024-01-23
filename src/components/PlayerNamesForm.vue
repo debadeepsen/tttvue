@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { useGameStore } from '@/stores/game'
 import PlayerSymbol from '@/components/utilities/PlayerSymbol.vue'
 
-const players = ref(['Manuel', 'Pratyush'])
+const players = ref(['', ''])
 const store = useGameStore()
 
 const startGame = () => {
