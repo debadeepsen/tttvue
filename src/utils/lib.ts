@@ -1,9 +1,15 @@
-import { STORAGE_KEY, type PlayerRecord, type SymbolValue } from './constants'
+import { STORAGE_KEY, type PlayerRecord, type SymbolValue, CROSS, CIRCLE } from './constants'
 
 export const getAlgebraicNotation = (index: number) => {
   const row = 4 - Math.ceil((index + 1) / 3)
   const col = ['A', 'B', 'C'][index % 3]
   return `${col}${row}`
+}
+
+export const getIcon = (box: string) => {
+  if (box === CROSS) return 'cross'
+  if (box === CIRCLE) return 'circle'
+  return 'blank'
 }
 
 export const whoWon = (boxes: string[]) => {

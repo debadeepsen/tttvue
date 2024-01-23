@@ -3,39 +3,28 @@ import { computed, ref } from 'vue'
 import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY, type SymbolValue } from '@/utils/constants'
 import PlayerSymbol from '@/components/utilities/PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
-import { getAlgebraicNotation, whoWon, getLeaderboardData } from '@/utils/lib'
+import { whoWon, getLeaderboardData, getIcon } from '@/utils/lib'
 import ModalDialog from '@/components/utilities/ModalDialog.vue'
 
-const store = useGameStore()
 const winnerSymbol = ref<SymbolValue | null>(null)
 const showDialog = ref(false)
 
-const getIcon = (box: string) => {
-  if (box === CROSS) return 'cross'
-  if (box === CIRCLE) return 'circle'
-  return 'blank'
-}
+const store = useGameStore()
 
-const updateGameHistory = (currentSymbol: SymbolValue, index: number) => {
-  // const box = getAlgebraicNotation(index)
-  store.history[currentSymbol].push(index)
-}
+// actions
+const { updateGameHistory, setNextPlayer, resetGame } = store
 
-const setNextPlayer = () => {
-  store.currentPlayer = store.currentPlayer === 0 ? 1 : 0
-}
+// computed
+const winnerName = computed(() => store.players[winnerSymbol.value === CROSS ? 0 : 1])
+const numOfMoves = computed(() => store.history[winnerSymbol.value as SymbolValue].length)
 
+// methods
 const updateLeaderboard = () => {
   const data = getLeaderboardData()
 
   data.push({ name: winnerName.value, moves: numOfMoves.value, timestamp: Date.now() })
   localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
 }
-
-const winnerName = computed(() => store.players[winnerSymbol.value === CROSS ? 0 : 1])
-const numOfMoves = computed(
-  () => store.history[winnerSymbol.value as SymbolValue].length
-)
 
 const checkForWin = () => {
   const winningSymbol = whoWon(store.boxes)
@@ -51,7 +40,7 @@ const checkForWin = () => {
 
 const closeDialog = () => {
   showDialog.value = false
-  store.resetGame()
+  resetGame()
 }
 
 const setBoxValue = (index: number) => {

@@ -24,6 +24,14 @@ export const useGameStore = defineStore('game', () => {
     }
   })
 
+  const updateGameHistory = (currentSymbol: SymbolValue, index: number) => {
+    history.value[currentSymbol].push(index)
+  }
+
+  const setNextPlayer = () => {
+    currentPlayer.value = 1 - currentPlayer.value!
+  }
+
   const undoLastMove = (symbol: SymbolValue) => {
     if (currentPlayer.value === null) return
 
@@ -43,5 +51,5 @@ export const useGameStore = defineStore('game', () => {
     history.value = { [CROSS]: [], [CIRCLE]: [] }
   }
 
-  return { players, started, currentPlayer, history, boxes, undoLastMove, resetGame }
+  return { players, started, currentPlayer, history, boxes, updateGameHistory, setNextPlayer, undoLastMove, resetGame }
 })
