@@ -19,6 +19,6 @@
      },
      "target": "ES6",
      "module": "CommonJS",
-     "lib": ["es2015"], 
+     "lib": ["es2022"], 
    }
 }

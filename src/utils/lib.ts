@@ -1,4 +1,4 @@
-import { CROSS, CIRCLE, STORAGE_KEY, type PlayerRecord } from './constants'
+import { STORAGE_KEY, type PlayerRecord, type SymbolValue } from './constants'
 
 export const getAlgebraicNotation = (index: number) => {
   const row = 4 - Math.ceil((index + 1) / 3)
@@ -18,12 +18,12 @@ export const whoWon = (boxes: string[]) => {
     [2, 4, 6]
   ]
 
-  let winningSymbol: typeof CROSS | typeof CIRCLE | null = null
+  let winningSymbol: SymbolValue | null = null
 
   for (const [first, second, third] of winningCombinations) {
     const equalityCheck = boxes[first] === boxes[second] && boxes[second] === boxes[third]
     if (equalityCheck && !!boxes[first]) {
-      winningSymbol = boxes[first] as typeof CROSS | typeof CIRCLE
+      winningSymbol = boxes[first] as SymbolValue
       break
     }
   }

@@ -1,12 +1,12 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
-import { CIRCLE, CROSS } from '@/utils/constants'
+import { CIRCLE, CROSS, BLANK } from '@/utils/constants'
 
 const defaultState = {
   players: ['', ''],
   started: false,
   currentPlayer: null,
-  boxes: new Array(9).fill(''),
+  boxes: new Array(9).fill(BLANK),
   history: { [CROSS]: [], [CIRCLE]: [] }
 }
 
@@ -15,7 +15,7 @@ export const useGameStore = defineStore('game', () => {
   const started = ref(defaultState.started)
   const currentPlayer = ref<number | null>(defaultState.currentPlayer)
   const boxes = ref<string[]>(defaultState.boxes)
-  const history = ref<{ [CROSS]: string[]; [CIRCLE]: string[] }>(defaultState.history)
+  const history = ref<{ [CROSS]: number[]; [CIRCLE]: number[] }>(defaultState.history)
 
   // every time the game starts, automatically give the turn to player X
   watch(started, function (val) {
@@ -28,7 +28,7 @@ export const useGameStore = defineStore('game', () => {
     players.value = defaultState.players
     started.value = defaultState.started
     currentPlayer.value = defaultState.currentPlayer
-    boxes.value = new Array(9).fill('')
+    boxes.value = new Array(9).fill(BLANK)
     history.value = { [CROSS]: [], [CIRCLE]: [] }
   }
 

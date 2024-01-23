@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY } from '@/utils/constants'
+import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY, type SymbolValue } from '@/utils/constants'
 import PlayerSymbol from '@/components/utilities/PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 import { getAlgebraicNotation, whoWon, getLeaderboardData } from '@/utils/lib'
 import ModalDialog from '@/components/utilities/ModalDialog.vue'
 
 const store = useGameStore()
-const winnerSymbol = ref<typeof CROSS | typeof CIRCLE | null>(null)
+const winnerSymbol = ref<SymbolValue | null>(null)
 const showDialog = ref(false)
 
 const getIcon = (box: string) => {
@@ -16,9 +16,9 @@ const getIcon = (box: string) => {
   return 'blank'
 }
 
-const updateGameHistory = (currentSymbol: typeof CROSS | typeof CIRCLE, index: number) => {
-  const box = getAlgebraicNotation(index)
-  store.history[currentSymbol].push(box)
+const updateGameHistory = (currentSymbol: SymbolValue, index: number) => {
+  // const box = getAlgebraicNotation(index)
+  store.history[currentSymbol].push(index)
 }
 
 const setNextPlayer = () => {
@@ -35,7 +35,7 @@ const updateLeaderboard = () => {
 
 const winnerName = computed(() => store.players[winnerSymbol.value === CROSS ? 0 : 1])
 const numOfMoves = computed(
-  () => store.history[winnerSymbol.value as typeof CROSS | typeof CIRCLE].length
+  () => store.history[winnerSymbol.value as SymbolValue].length
 )
 
 const checkForWin = () => {

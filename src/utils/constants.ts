@@ -8,3 +8,4 @@ export const COL_IDS = ['A', 'B', 'C']
 export const STORAGE_KEY = 'ttt-data'
 
 export type PlayerRecord = { name: string; moves: number; timestamp: number }
+export type SymbolValue = typeof CROSS | typeof CIRCLE
