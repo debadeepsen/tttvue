@@ -11,8 +11,8 @@ const gameInProgress = computed(() => store.started)
 </script>
 <template>
   <div class="game-container px-8 lg:px-16 min-h-full w-full lg:w-2/3">
-    <h1 class="mt-6 lg:mt-0 mb-6 text-center lg:text-left">Tic-Tac-Toe</h1>
-    <div v-show="!gameInProgress" class="border border-zinc-400 w-full p-2">
+    <h1 class="mt-12 lg:mt-0 mb-6 text-center lg:text-left">Tic-Tac-Toe</h1>
+    <div v-show="!gameInProgress" class="border border-zinc-400 w-full">
       <player-names-form />
     </div>
     <div v-show="gameInProgress">

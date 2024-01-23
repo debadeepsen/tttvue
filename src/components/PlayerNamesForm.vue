@@ -13,7 +13,7 @@ const startGame = () => {
 </script>
 
 <template>
-  <h3 class="mt-8 lg:mt-0 mb-4">Enter the names of the players</h3>
+  <h3 class="mt-2 lg:mt-0 mb-4">Enter the names of the players</h3>
   <div class="player-name">
     <player-symbol icon="cross" />
     <input type="text" placeholder="Player 1" v-model="players[0]" />

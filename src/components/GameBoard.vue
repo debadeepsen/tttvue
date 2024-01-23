@@ -70,12 +70,12 @@ const setBoxValue = (index: number) => {
 
 <template>
   <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
-    <div class="absolute top-0 -left-4 h-full flex flex-col-reverse">
+    <div class="absolute top-0 -left-[4px] h-full flex flex-col-reverse">
       <div v-for="rowId in ROW_IDS" :key="rowId" class="h-1/3 flex flex-col justify-center">
         {{ rowId }}
       </div>
     </div>
-    <div class="absolute -bottom-4 left-0 w-full flex">
+    <div class="absolute -bottom-6 left-0 w-full flex">
       <div v-for="colId in COL_IDS" :key="colId" class="w-1/3 flex justify-center">
         {{ colId }}
       </div>
