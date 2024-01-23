@@ -23,6 +23,6 @@ main {
   @apply w-full h-screen flex justify-center items-center;
 }
 .container {
-  @apply bg-white lg:w-[80vw] max-w-[1024px] font-normal p-8 lg:p-16 rounded-md shadow-xl;
+  @apply max-[375px]:pt-4 bg-white lg:w-[80vw] max-w-[1024px] font-normal p-8 lg:p-16 rounded-md shadow-xl;
 }
 </style>

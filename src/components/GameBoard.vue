@@ -69,7 +69,7 @@ const setBoxValue = (index: number) => {
 </script>
 
 <template>
-  <div class="p-2 w-full md:w-1/2 lg:w-1/3 flex justify-center items-center relative">
+  <div class="p-2 w-full lg:w-1/3 flex justify-center items-center relative">
     <div class="absolute top-0 -left-[4px] h-full flex flex-col-reverse">
       <div v-for="rowId in ROW_IDS" :key="rowId" class="h-1/3 flex flex-col justify-center">
         {{ rowId }}
