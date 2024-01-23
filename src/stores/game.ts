@@ -36,7 +36,6 @@ export const useGameStore = defineStore('game', () => {
     if (currentPlayer.value === null) return
 
     const [lastBoxIndex] = history.value[symbol].slice(-1)
-    if (lastBoxIndex === undefined) return
 
     boxes.value[lastBoxIndex] = BLANK
     history.value[symbol].pop()
