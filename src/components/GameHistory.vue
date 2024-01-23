@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores/game'
 import { CIRCLE, CROSS } from '@/utils/constants'
-import WaitingSymbol from './WaitingSymbol.vue'
+import WaitingSymbol from '@/components/utilities/WaitingSymbol.vue'
+import IconUndo from './icons/IconUndo.vue'
 
 const store = useGameStore()
 </script>
@@ -15,10 +16,15 @@ const store = useGameStore()
       </div>
       <div v-for="(move, i) in store.history[CROSS]" :key="i" class="row">
         {{ move }}
+        <button>
+          <icon-undo />
+        </button>
       </div>
     </div>
     <div class="w-1/2">
-      <div class="col-header">{{ store.players?.[1] }} <waiting-symbol v-show="store.currentPlayer === 1" class="ml-2" /></div>
+      <div class="col-header">
+        {{ store.players?.[1] }} <waiting-symbol v-show="store.currentPlayer === 1" class="ml-2" />
+      </div>
       <div v-for="(move, i) in store.history[CIRCLE]" :key="i" class="row">
         {{ move }}
       </div>

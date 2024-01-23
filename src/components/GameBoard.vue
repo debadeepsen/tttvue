@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { CIRCLE, COL_IDS, CROSS, ROW_IDS, STORAGE_KEY } from '@/utils/constants'
-import PlayerSymbol from './PlayerSymbol.vue'
+import PlayerSymbol from '@/components/utilities/PlayerSymbol.vue'
 import { useGameStore } from '@/stores/game'
 import { getAlgebraicNotation, whoWon, getLeaderboardData } from '@/utils/lib'
-import ModalDialog from './ModalDialog.vue'
+import ModalDialog from '@/components/utilities/ModalDialog.vue'
 
 const store = useGameStore()
 const winnerSymbol = ref<typeof CROSS | typeof CIRCLE | null>(null)
