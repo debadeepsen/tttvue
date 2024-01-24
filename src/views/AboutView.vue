@@ -11,6 +11,12 @@ import IconGame from '@/components/icons/IconGame.vue'
       <h1>About this game</h1>
       <div class="mt-2">This is a simple tic-tac-toe game implemented with Vue JS.</div>
       <!-------------------------------------------------------->
+      <h2>How to play</h2>
+      <div class="mt-2">
+        <p>Provide the player names on the splash screen and press "Start Game". The blinking red dot indicates the player who has the current turn.</p>
+        <p>The current player can press anywhere on the empty grid to register their move.</p>
+      </div>
+      <!-------------------------------------------------------->
       <h2>Game notation</h2>
       <div class="mt-2">
         The game uses a similar technique to chess for recording moves. For example, if a player

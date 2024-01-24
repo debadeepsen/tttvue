@@ -13,18 +13,20 @@ const startGame = () => {
 </script>
 
 <template>
-  <h3 class="mt-2 lg:mt-0 mb-4">Enter the names of the players</h3>
-  <div class="player-name">
-    <player-symbol icon="cross" />
-    <input type="text" placeholder="Player 1" v-model="players[0]" />
-  </div>
-  <div class="mt-2 player-name">
-    <player-symbol icon="circle" />
-    <input type="text" placeholder="Player 2" v-model="players[1]" />
-  </div>
-  <div class="mt-2">
-    <button class="primary" @click="startGame">Start Game</button>
-  </div>
+  <form @submit.prevent="startGame">
+    <h3 class="mt-2 lg:mt-0 mb-4">Enter the names of the players</h3>
+    <div class="player-name">
+      <player-symbol icon="cross" />
+      <input type="text" required placeholder="Player 1" v-model="players[0]" />
+    </div>
+    <div class="mt-2 player-name">
+      <player-symbol icon="circle" />
+      <input type="text" required placeholder="Player 2" v-model="players[1]" />
+    </div>
+    <div class="mt-2">
+      <button type="submit" class="primary">Start Game</button>
+    </div>
+  </form>
 </template>
 
 <style scoped>

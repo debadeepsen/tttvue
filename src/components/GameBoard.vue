@@ -70,8 +70,8 @@ const setBoxValue = (index: number) => {
     </div>
     <div class="grid grid-cols-3 grid-rows-3 gap-1 bg-[#333] w-72">
       <button
-        class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none"
-        :style="{ cursor: store.started ? 'pointer' : 'default' }"
+        class="size-full h-[5.5rem] text-lg border-none bg-white rounded-none transition-all"
+        :style="{ cursor: store.started || !!store.boxes[i] ? 'pointer' : 'default' }"
         v-for="(box, i) in store.boxes"
         :key="i"
         @click="setBoxValue(i)"
