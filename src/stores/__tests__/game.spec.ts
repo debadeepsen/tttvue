@@ -2,7 +2,7 @@ import { setActivePinia, createPinia } from 'pinia'
 import { useGameStore } from '../game'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-describe('Counter Store', () => {
+describe('store', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
   })
